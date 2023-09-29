@@ -2,15 +2,41 @@
 #
 # https://gqlgen.com/getting-started/
 
+scalar DateTime
 
 
 type User {
   id: ID!
   name: String!
+  age: Int
+  address: String
+  document_type: Int!
+  document: Int!
+}
+
+type Transaction {
+    id: ID!
+    rrn: Int!
+    amount: Int!
+    currency: String!
+    user_id: ID!
+    good_id: ID!
+    place: String!
+    time: DateTime!
+}
+
+type Good {
+    id: ID!
+    name: String!
+    price: Int!
+    currency: String!
+    country_origin: String
 }
 
 type Query {
-  GetUser(id: String!): User!
+  GetUser(id: ID!): User!
+  GetTransaction(id: ID!): Transaction!
+  GetGood(id: ID!): Good!
 }
 
 

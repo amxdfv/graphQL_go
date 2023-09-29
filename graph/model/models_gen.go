@@ -2,7 +2,30 @@
 
 package model
 
+type Good struct {
+	ID            string  `json:"id"`
+	Name          string  `json:"name"`
+	Price         int     `json:"price"`
+	Currency      string  `json:"currency"`
+	CountryOrigin *string `json:"country_origin,omitempty"`
+}
+
+type Transaction struct {
+	ID       string `json:"id"`
+	Rrn      int    `json:"rrn"`
+	Amount   int    `json:"amount"`
+	Currency string `json:"currency"`
+	UserID   string `json:"user_id"`
+	GoodID   string `json:"good_id"`
+	Place    string `json:"place"`
+	Time     string `json:"time"`
+}
+
 type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID           string  `json:"id"`
+	Name         string  `json:"name"`
+	Age          *int    `json:"age,omitempty"`
+	Address      *string `json:"address,omitempty"`
+	DocumentType int     `json:"document_type"`
+	Document     int     `json:"document"`
 }

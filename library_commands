@@ -1,0 +1,6 @@
+# просто команды для библы чтобы не забыть
+
+go run github.com/99designs/gqlgen init   -- создаем сервер
+
+go run github.com/99designs/gqlgen generate   -- генерируем код согласно схеме
+

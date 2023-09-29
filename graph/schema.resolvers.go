@@ -6,18 +6,30 @@ package graph
 
 import (
 	"context"
+	"go-graphql-api/database"
 	"go-graphql-api/graph/model"
 )
 
 // GetUser is the resolver for the GetUser field.
 func (r *queryResolver) GetUser(ctx context.Context, id string) (*model.User, error) {
 	//var user model.User
-
-	user := &model.User{}
-	user.Name = "sample name"
-	user.ID = "sample id"
-	return user, nil
+	user, err := database.GetUserFromDB(id)
+	return user, err
 	//panic(fmt.Errorf("not implemented: GetUser - GetUser"))
+}
+
+// GetTransaction is the resolver for the GetTransaction field.
+func (r *queryResolver) GetTransaction(ctx context.Context, id string) (*model.Transaction, error) {
+	trans, err := database.GetTransFromDB(id)
+	return trans, err
+	//panic(fmt.Errorf("not implemented: GetTransaction - GetTransaction"))
+}
+
+// GetGood is the resolver for the GetGood field.
+func (r *queryResolver) GetGood(ctx context.Context, id string) (*model.Good, error) {
+	good, err := database.GetGoodFromDB(id)
+	return good, err
+	//panic(fmt.Errorf("not implemented: GetGood - GetGood"))
 }
 
 // Query returns QueryResolver implementation.
