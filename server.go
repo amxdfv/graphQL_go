@@ -15,13 +15,6 @@ const defaultPort = "8080"
 
 func main() {
 	var Os_log logs_logic.Simple_log
-	/*var FileLog, err = os.Create("C:\\Users\\Лёшка\\GolandProjects\\graphQL_go\\logs\\log.txt")
-	if err != nil {
-		println(err.Error())
-	}
-	infoLog := log.New(FileLog, "INFO\t", log.Ldate|log.Ltime)
-	infoLog.Print("Запускаем сервер, работяги") */
-
 	Os_log.Message = "Запускаем сервер, работяги"
 
 	port := os.Getenv("PORT")

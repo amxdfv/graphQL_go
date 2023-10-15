@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"errors"
 	_ "github.com/iamacarpet/go-sqlite3-dynamic"
 	"go-graphql-api/graph/model"
 )
@@ -18,8 +19,11 @@ func GetUserFromDB(id string) (*model.User, error) {
 		return nil, err
 	}
 	defer res.Close()
-	res.Next()
-	err = res.Scan(&sample_user.ID, &sample_user.Name, &sample_user.Age, &sample_user.Address, &sample_user.DocumentType, &sample_user.Document) // TODO сделать обработку результатат когда пользователь не найден
+	if res.Next() == false {
+		err = errors.New("Пользователь не найден")
+		return nil, err
+	}
+	err = res.Scan(&sample_user.ID, &sample_user.Name, &sample_user.Age, &sample_user.Address, &sample_user.DocumentType, &sample_user.Document)
 	if err != nil {
 		return nil, err
 	}
@@ -40,7 +44,10 @@ func GetTransFromDB(id string) (*model.Transaction, error) {
 		return nil, err
 	}
 	defer res.Close()
-	res.Next()
+	if res.Next() == false {
+		err = errors.New("Транзакция не найдена")
+		return nil, err
+	}
 	err = res.Scan(&sample_trans.ID, &sample_trans.Rrn, &sample_trans.Amount, &sample_trans.Currency, &sample_trans.UserID, &sample_trans.GoodID, &sample_trans.Place, &sample_trans.Time)
 	if err != nil {
 		return nil, err
@@ -62,7 +69,10 @@ func GetGoodFromDB(id string) (*model.Good, error) {
 		return nil, err
 	}
 	defer res.Close()
-	res.Next()
+	if res.Next() == false {
+		err = errors.New("Товар не найден")
+		return nil, err
+	}
 	err = res.Scan(&sample_good.ID, &sample_good.Name, &sample_good.Price, &sample_good.Currency, &sample_good.CountryOrigin)
 	if err != nil {
 		return nil, err
