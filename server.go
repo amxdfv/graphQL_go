@@ -2,6 +2,7 @@ package main
 
 import (
 	"go-graphql-api/graph"
+	"go-graphql-api/logs_logic"
 	"log"
 	"net/http"
 	"os"
@@ -13,6 +14,16 @@ import (
 const defaultPort = "8080"
 
 func main() {
+	var Os_log logs_logic.Simple_log
+	/*var FileLog, err = os.Create("C:\\Users\\Лёшка\\GolandProjects\\graphQL_go\\logs\\log.txt")
+	if err != nil {
+		println(err.Error())
+	}
+	infoLog := log.New(FileLog, "INFO\t", log.Ldate|log.Ltime)
+	infoLog.Print("Запускаем сервер, работяги") */
+
+	Os_log.Message = "Запускаем сервер, работяги"
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
@@ -24,5 +35,6 @@ func main() {
 	http.Handle("/query", srv)
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
+	logs_logic.Write_usual_log(Os_log)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

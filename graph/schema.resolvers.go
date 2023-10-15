@@ -6,14 +6,31 @@ package graph
 
 import (
 	"context"
+	"encoding/json"
 	"go-graphql-api/database"
 	"go-graphql-api/graph/model"
+	"go-graphql-api/logs_logic"
 )
 
 // GetUser is the resolver for the GetUser field.
 func (r *queryResolver) GetUser(ctx context.Context, id string) (*model.User, error) {
 	//var user model.User
+	var Os_log logs_logic.Simple_log
+	Os_log.Message = "Попытка получить пользователя - "
+
 	user, err := database.GetUserFromDB(id)
+	var val []byte
+	val, _ = json.Marshal(user)
+	Os_log.Answer = string(val[:])
+	if err != nil {
+		Os_log.Message = Os_log.Message + "Ошибка"
+	} else {
+		Os_log.Message = Os_log.Message + "Успех"
+	}
+	Os_log.Query_id = id
+	Os_log.Query_type = "GetUser"
+	logs_logic.Write_usual_log(Os_log)
+
 	return user, err
 	//panic(fmt.Errorf("not implemented: GetUser - GetUser"))
 }
