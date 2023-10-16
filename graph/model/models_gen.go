@@ -10,6 +10,31 @@ type Good struct {
 	CountryOrigin *string `json:"country_origin,omitempty"`
 }
 
+type NewGood struct {
+	Name          string  `json:"name"`
+	Price         int     `json:"price"`
+	Currency      string  `json:"currency"`
+	CountryOrigin *string `json:"country_origin,omitempty"`
+}
+
+type NewTransaction struct {
+	Rrn      int    `json:"rrn"`
+	Amount   int    `json:"amount"`
+	Currency string `json:"currency"`
+	UserID   string `json:"user_id"`
+	GoodID   string `json:"good_id"`
+	Place    string `json:"place"`
+	Time     string `json:"time"`
+}
+
+type NewUser struct {
+	Name         string  `json:"name"`
+	Age          *int    `json:"age,omitempty"`
+	Address      *string `json:"address,omitempty"`
+	DocumentType int     `json:"document_type"`
+	Document     int     `json:"document"`
+}
+
 type Transaction struct {
 	ID       string `json:"id"`
 	Rrn      int    `json:"rrn"`

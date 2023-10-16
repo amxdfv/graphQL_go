@@ -11,6 +11,27 @@ import (
 	"go-graphql-api/logs_logic"
 )
 
+// CreateUser is the resolver for the CreateUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
+	user, err := database.AddUserToDB(input)
+	return user, err
+	//panic(fmt.Errorf("not implemented: CreateUser - CreateUser"))
+}
+
+// AddTransaction is the resolver for the AddTransaction field.
+func (r *mutationResolver) AddTransaction(ctx context.Context, input model.NewTransaction) (*model.Transaction, error) {
+	trans, err := database.NewTransaction(input)
+	return trans, err
+	//	panic(fmt.Errorf("not implemented: AddTransaction - AddTransaction"))
+}
+
+// AddGood is the resolver for the AddGood field.
+func (r *mutationResolver) AddGood(ctx context.Context, input model.NewGood) (*model.Good, error) {
+	good, err := database.NewGood(input)
+	return good, err
+	//panic(fmt.Errorf("not implemented: AddGood - AddGood"))
+}
+
 // GetUser is the resolver for the GetUser field.
 func (r *queryResolver) GetUser(ctx context.Context, id string) (*model.User, error) {
 	msg := "Попытка получить пользователя - "
@@ -53,7 +74,11 @@ func (r *queryResolver) GetGood(ctx context.Context, id string) (*model.Good, er
 	//panic(fmt.Errorf("not implemented: GetGood - GetGood"))
 }
 
+// Mutation returns MutationResolver implementation.
+func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
+type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }

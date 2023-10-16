@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"errors"
+	"github.com/google/uuid"
 	_ "github.com/iamacarpet/go-sqlite3-dynamic"
 	"go-graphql-api/graph/model"
 )
@@ -81,6 +82,45 @@ func GetGoodFromDB(id string) (*model.Good, error) {
 	var good = &sample_good
 	return good, nil
 
+}
+
+func AddUserToDB(input model.NewUser) (*model.User, error) {
+	db, err := returnDB()
+	if err != nil {
+		return nil, err
+	}
+	id := uuid.New().String()
+	_, err = db.Exec("INSERT INTO users (id, name, age, address, document_type, ducument) VALUES (?, ?, ?, ?, ?, ?)", id, input.Name, input.Age, input.Address, input.DocumentType, input.Document) // TODO переименуй столбцы в таблице
+	if err != nil {
+		return nil, err
+	}
+	return GetUserFromDB(id)
+}
+
+func NewTransaction(input model.NewTransaction) (*model.Transaction, error) {
+	db, err := returnDB()
+	if err != nil {
+		return nil, err
+	}
+	id := uuid.New().String()
+	_, err = db.Exec("INSERT INTO transactions (id, rrn, amount, currency, user_id, good_id, place, t_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", id, input.Rrn, input.Amount, input.Currency, input.UserID, input.GoodID, input.Place, input.Time)
+	if err != nil {
+		return nil, err
+	}
+	return GetTransFromDB(id)
+}
+
+func NewGood(input model.NewGood) (*model.Good, error) {
+	db, err := returnDB()
+	if err != nil {
+		return nil, err
+	}
+	id := uuid.New().String()
+	_, err = db.Exec("INSERT INTO goods (id, name, price, currency, country_origin) VALUES (?, ?, ?, ?, ?)", id, input.Name, input.Price, input.Currency, input.CountryOrigin)
+	if err != nil {
+		return nil, err
+	}
+	return GetGoodFromDB(id)
 }
 
 func returnDB() (*sql.DB, error) {

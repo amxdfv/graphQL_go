@@ -39,4 +39,36 @@ type Query {
   GetGood(id: ID!): Good!
 }
 
+input NewUser {
+    name: String!
+    age: Int
+    address: String
+    document_type: Int!
+    document: Int!
+}
+
+input NewTransaction {
+    rrn: Int!
+    amount: Int!
+    currency: String!
+    user_id: ID!
+    good_id: ID!
+    place: String!
+    time: DateTime!
+}
+
+input NewGood {
+    name: String!
+    price: Int!
+    currency: String!
+    country_origin: String
+}
+
+
+type Mutation {
+    CreateUser(input: NewUser!): User!
+    AddTransaction(input: NewTransaction!): Transaction!
+    AddGood(input: NewGood!): Good!
+}
+
 
