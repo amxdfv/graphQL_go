@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/google/uuid"
-	_ "github.com/iamacarpet/go-sqlite3-dynamic"
 	"go-graphql-api/graph/model"
 )
 

@@ -36,3 +36,9 @@ name -  CHAR
 price - NUMBER
 currency - CHAR
 country_origin - CHAR
+
+Для запуска в контейнере:
+1. Ставим себе docker 
+2. Собираем образ командой docker build -t  graphql .
+3. Запускаем контенейр командой docker run -p 8080:8080 graphql
+4. Приложение будет доступно по адресу http://localhost:8080/oslic

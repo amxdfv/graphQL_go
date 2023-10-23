@@ -18,6 +18,8 @@ github.com/hashicorp/golang-lru/v2 v2.0.3 h1:kmRrRLlInXvng0SmLxmQpQkpbYAvcXm7NPD
 github.com/hashicorp/golang-lru/v2 v2.0.3/go.mod h1:QeFd9opnmA6QUJc5vARoKUSoFhyfM2/ZepoAG6RGpeM=
 github.com/iamacarpet/go-sqlite3-dynamic v0.0.0-20190515092955-345069c6d7b9 h1:MDZ6mJ7Ouz9lSwLtD7v2QeDlbdL6rONTAJRNEQqRYC0=
 github.com/iamacarpet/go-sqlite3-dynamic v0.0.0-20190515092955-345069c6d7b9/go.mod h1:HSsZaV17NZLgfHsNz3wzjE66Gd2EGlF8OuC0DdPpgPk=
+github.com/mattn/go-sqlite3 v1.14.17 h1:mCRHCLDUBXgpKAqIKsaAaAsrAlbkeomtRFKXh2L6YIM=
+github.com/mattn/go-sqlite3 v1.14.17/go.mod h1:2eHXhiwb8IkHr+BDWZGa96P6+rkvnG63S2DGjv9HUNg=
 github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyuac5Z2hdY=
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/notti/nocgo v0.0.0-20190619201224-fc443047424c h1:3fTZ9+GLtn9eqKC1RGLojMG7St2WsskOeGXKFEhNTlo=
